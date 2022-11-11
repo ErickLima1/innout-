@@ -25,17 +25,12 @@ class Model {
         $this->values[$key] = $value;
     }
     
-    public static function get($filters = [], $columns = '*') {
-        $objects = [];
+    public static function getOne($filters = [], $columns = '*') {
+        $class = get_called_class();
         $result = static::getResultFromSelect($filters, $columns);
-        if($result) {
-            $class = get_called_class();
-            while($row = $result->fetch_assoc()) {
-                array_push($objects, new $class($row));
-            }
-        }
-        return $objects;
-    }
+        
+        return $result ? new $class($result->fetch_assoc()) : null;
+    }//
 
     public static function getResultFromSelect($filters = [], $columns = '*') {
         $sql = "SELECT ${columns} FROM " . static::$tableName . static::getFilters($filters);    
