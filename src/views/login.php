@@ -24,7 +24,8 @@
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" 
-                    class="form-control" 
+                    class="form-control"
+                    value="<?= $_POST['email'] ?>" 
                     placeholder="Informe o E-mail" autofocus>
                 </div>
                 <div class="form-group">
