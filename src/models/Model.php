@@ -1,6 +1,6 @@
 <?php
 
-class Model {
+class Model {   
     protected static $tableName = '';
     protected static $columns = [];
     protected $values = [];
