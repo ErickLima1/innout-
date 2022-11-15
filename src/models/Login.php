@@ -7,10 +7,14 @@ class Login extends model {
 
         $user = User::getOne(['email' => $this->email]);
         if($user) {
+            if($user->end_date) {
+                throw new AppException('Usuário está Desligado da empresa.');
+            }
+
             if(password_verify($this->password, $user->password)) {
                 return $user;
             }
         }
-        throw new Exception();
+        throw new AppException('Usuário/Senha Inválidos.');
     }
 }
