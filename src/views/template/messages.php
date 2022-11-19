@@ -30,8 +30,3 @@ if (isset($message['type']) && $message['type'] === 'error') {
         <?= $message['message'] ?>
     </div>
 <?php endif ?>
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
