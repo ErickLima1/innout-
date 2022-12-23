@@ -1,5 +1,6 @@
+<!-- Vou poder reutilizar esse codigo em outros lugares -->
 <div class="content-title mb-4">
-    <?php if($icon) { ?>
+    <?php if($icon) { ?> 
         <i class="icon <?= $icon ?> mr-2"></i>.
     <?php } ?>
 
