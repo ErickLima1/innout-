@@ -1,5 +1,5 @@
 <main class="content">
-    <?php
+    <?php //Parte do PHP //reutilizável
     renderTitle(
         'Registrar Ponto',
         'Mantenha Seu Ponto Consistente!',
@@ -8,7 +8,7 @@
     );
         include(TEMPLATE_PATH . "/messages.php");
      ?>
-    <div class="card">
+    <div class="card"> <!--Efeito da listras é o card-->
         <div class="card-header">
             <h3><?= $today ?></h3>
             <p class="mb-0">Os Batimentos Efetuados Hoje</p>
