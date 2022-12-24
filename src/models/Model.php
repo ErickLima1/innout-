@@ -17,7 +17,7 @@ class Model {
         }
     }
     public function __get($key) {
-        return $this->values[$key];
+        return $this->values[$key] ?? null;
 
     }
 
@@ -44,7 +44,7 @@ class Model {
 
     public function save() {//Metodo Que vai fazer a inserção do banco de dados
         $sql = "INSERT INTO " . static::$tableName . " ("
-            . implode(",", static::$columns) . ") VALUES (" ; //Implode transforma array em string;
+            . implode(",", static::$columns) . ") VALUES ("; //Implode transforma array em string;
         foreach(static::$columns as $col) {
             $sql .= static::getFormatedValue($this->$col) . ",";
         }
