@@ -42,7 +42,7 @@ class Model {
         }
     }
 
-    public function save() {//Metodo Que vai fazer a inserção do banco de dados
+    public function insert() {//Metodo Que vai fazer a inserção do banco de dados
         $sql = "INSERT INTO " . static::$tableName . " ("
             . implode(",", static::$columns) . ") VALUES ("; //Implode transforma array em string;
         foreach(static::$columns as $col) {
@@ -51,6 +51,16 @@ class Model {
         $sql[strlen($sql) - 1] = ')';
         $id = Database::executeSQL($sql);
         $this->id = $id;
+    }
+
+    public function update() {
+        $sql = "UPDATE" . static::$tableName . " SET ";
+        foreach(static::$columns as $col) {
+            $sql .= " ${col} =" . static::getFormatedValue($this->$col) . ",";
+        }
+        $sql[strlen($sql) - 1] = ' ';
+        $sql .= "WHERE id ={$this->id}";
+        Database::executeSQL($sql);
     }
 
     private static function getFilters($filters) {
