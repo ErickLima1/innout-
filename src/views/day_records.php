@@ -20,11 +20,11 @@
             </div>
             <div class="d-flex m-5 justify-content-around">
                 <span class="record">Entrada 2:<?= $records->time3 ?? '---'?></span>
-                <span class="record">Saida 2: <?= $records->time4 ?? '---'?></span>
+                <span class="record">Saida 2:  <?=  $records->time4 ?? '---'?></span>
             </div>
         </div>
         <div class="card-footer d-flex justify-content-center">
-            <a href="???" class="btn btn-success btn-lg">
+            <a href="innout.php" class="btn btn-success btn-lg">
                 <i class="icofont-check mr-1"></i>
                 Bater Ponto
             </a>
