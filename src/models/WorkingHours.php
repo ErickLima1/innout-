@@ -35,6 +35,17 @@ class WorkingHours extends Model {
         return null;
     }
 
+    public function getActiveClock() {
+        $nexTime = $this->getNextTime();
+        if($nexTime === 'time1' || $nexTime === 'time3') {
+            return 'exitTime';
+        }elseif($nexTime === 'time2' || $nexTime === 'time4') {
+            return 'workedInterval';
+        }else{
+            return null;
+        }
+    }
+
     public function innout($time) {
         $timeColumn = $this->getNextTime();
         if(!$timeColumn) {
@@ -88,7 +99,7 @@ class WorkingHours extends Model {
         $times = [];
 
         $this->time1 ? array_push($times, getDateFromString($this->time1)) : array_push($times, null);
-        $this->time2? array_push($times,  getDateFromString($this->time2)) : array_push($times, null);
+        $this->time2 ? array_push($times,  getDateFromString($this->time2)) : array_push($times, null);
         $this->time3 ? array_push($times, getDateFromString($this->time3)) : array_push($times, null);
         $this->time4 ? array_push($times, getDateFromString($this->time4)) : array_push($times, null);
 
