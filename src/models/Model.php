@@ -24,15 +24,15 @@ class Model {
     public function __set($key, $value) {
         $this->values[$key] = $value;
     }
-    
+    //getResultSetFromSelect
     public static function getOne($filters = [], $columns = '*') {
         $class = get_called_class();
-        $result = static::getResultFromSelect($filters, $columns);
+        $result = static::getResultSetFromSelect($filters, $columns);
         
         return $result ? new $class($result->fetch_assoc()) : null;
     }//
 
-    public static function getResultFromSelect($filters = [], $columns = '*') {
+    public static function getResultSetFromSelect($filters = [], $columns = '*') {
         $sql = "SELECT ${columns} FROM " . static::$tableName . static::getFilters($filters);    
         $result = Database::getResultFromQuery($sql);
         if($result->num_rows === 0 ) {
@@ -68,7 +68,11 @@ class Model {
         if(count($filters) > 0 ) {
             $sql .= " WHERE 1 = 1"; 
             foreach($filters as $column => $value) {
-                $sql .= " AND ${column} = " . static::getFormatedValue($value);
+                if($column == 'raw') {
+                    $sql .= " AND {$value}";
+                }else{
+                    $sql .= " AND ${column} = " . static::getFormatedValue($value);
+                }
             }
         }
         return $sql;
