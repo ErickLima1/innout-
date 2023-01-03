@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href=".php">
+                <a href="monthy_report.php">
                     <i class="icofont-ui-calendar mr-2">
                         Relatorio Mensal
                     </i>
