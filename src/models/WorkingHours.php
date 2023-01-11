@@ -107,6 +107,39 @@ class WorkingHours extends Model {
         return "{$sign}{$balanceString}";
     }
 
+    //Todos os Usuarios que não estão com aquele dia especificamente com batimento cetados
+    //A Partir desse SELECT
+    public static function getAbsentUsers() { //Que saber qual os usuarios que não bateu o ponto no momento
+        $today = new DateTime();
+        $result = Database::getResultFromQuery("
+            SELECT name FROM users
+            WHERE end_date is NULL 
+            AND id NOT IN(
+                SELECT user_id FROM working_hours
+                WHERE work_date = '{$today->format('Y-m-d')}'
+                AND time1 IS NOT NULL
+            )
+        ");
+        $absentUsers = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($absentUsers, $row['name']);
+            }
+        }
+        return $absentUsers;
+    }
+
+    //Pegando todas horas trabalhadas dos usuarios daquele ano e mes
+    public static function getWorkedTimeInMoth($yearAndMonth) {
+        $startDate = (new DateTime("{$yearAndMonth}-1"))->format('Y-m-d');
+        $endtDate = getLastDayOfMonth($yearAndMonth)->format('Y-m-d');
+        $result = static::getResultSetFromSelect([
+            'raw' => "work_date BETWEEN '{$startDate}' AND '{$endtDate}'"
+
+        ], "sum(worked_time) as sum");
+        return $result->fetch_assoc()['sum'];
+    }
+
     public static function getMonthlyReport($userId, $date) {
         $registries = [];
         $startDate = getFirstDayOfMonth($date)->format('Y-m-d');
