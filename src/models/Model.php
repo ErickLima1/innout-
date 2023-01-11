@@ -32,6 +32,19 @@ class Model {
         return $result ? new $class($result->fetch_assoc()) : null;
     }//
 
+    //get_called_class()-> Esse metodo vai dizer extamente qual foi a classe que chamou essa função Get
+    public static function get($filters = [], $column = '*') { //Obtendo Usuários do banco
+        $objects = [];
+        $result = static::getResultSetFromSelect($filters, $column);
+        if($result) {
+            $class = get_called_class(); 
+            while($row = $result->fetch_assoc()) {
+                array_push($objects, new $class($row, false));
+            }
+        }
+        return $objects;
+    }
+
     public static function getResultSetFromSelect($filters = [], $columns = '*') {
         $sql = "SELECT ${columns} FROM " . static::$tableName . static::getFilters($filters);    
         $result = Database::getResultFromQuery($sql);
@@ -61,6 +74,12 @@ class Model {
         $sql[strlen($sql) - 1] = ' ';
         $sql .= "WHERE id ={$this->id}";
         Database::executeSQL($sql);
+    }
+
+    public static function getCount($filters = []) { //Pegando->COntador ou usuario
+        $result = static::getResultSetFromSelect($filters, 
+            'count(*) as count');
+        return $result->fetch_assoc()['count'];
     }
 
     private static function getFilters($filters) {
