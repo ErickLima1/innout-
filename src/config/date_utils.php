@@ -72,6 +72,6 @@ function getTimeStringFromSeconds($seconds) {
 
 
 function formatDateWithLocale($date, $pattern) {
-    $time = getDateAsDateTime($date)->getTimesTamp();
+    $time = getDateAsDateTime($date)->getTimestamp();
     return strftime($pattern, $time);
 }
