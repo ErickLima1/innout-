@@ -76,7 +76,7 @@ class Model {
         Database::executeSQL($sql);
     }
 
-    public static function getCount($filters = []) { //Pegando->COntador ou usuario
+    public static function getCount($filters = []) { //Pegando->Contador ou usuario
         $result = static::getResultSetFromSelect($filters, 
             'count(*) as count');
         return $result->fetch_assoc()['count'];
