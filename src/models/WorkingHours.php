@@ -139,7 +139,7 @@ class WorkingHours extends Model {
         ], "sum(worked_time) as sum");
         return $result->fetch_assoc()['sum'];
     }
-
+    
     public static function getMonthlyReport($userId, $date) {
         $registries = [];
         $startDate = getFirstDayOfMonth($date)->format('Y-m-d');
