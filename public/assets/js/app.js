@@ -21,13 +21,13 @@ function addOneSecond(hours, minutes, seconds) {
 }
 
 function activateClock() {
-    const activateClock = document.querySelector('[active-clock]');
-    if(!activateClock)  return;
+    const activeClock = document.querySelector('[active-clock]');
+    if(!activeClock)  return;
 
     setInterval(function() {
         // '16:45:52 => ['07', '27', '19'];        
-        const parts = activateClock.innerHTML.split(':');
-        activateClock.innerHTML = addOneSecond(...parts);
+        const parts = activeClock.innerHTML.split(':');
+        activeClock.innerHTML = addOneSecond(...parts);
     }, 1000);
 }
 
