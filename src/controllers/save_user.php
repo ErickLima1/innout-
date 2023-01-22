@@ -3,7 +3,7 @@ session_start();
 RequireValidSession();
 
 
-//Tratando erro caso na hora de inserir de error
+//Tratando erro caso na hora de inserir de error;
 $exception = null;
 $userData = [];
 
