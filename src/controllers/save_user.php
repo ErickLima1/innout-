@@ -4,7 +4,7 @@ RequireValidSession();
 
 
 //Tratando erro caso na hora de inserir de error
-$exeception = null;
+$exception  = null;
 
 if(count($_POST) > 0) {
     try {
@@ -13,9 +13,9 @@ if(count($_POST) > 0) {
         addSucessMsg('Usuario Cadastrado Com Sucesso');
         $_POST = [];
         
-    }catch(Exception $e) {
-        $exeception = $e;
+    } catch(Exception $e) {
+        $exception = $e;
     }
 }
 
-loadTemplateView('save_user', ['exeception'  => $exeception]);
+loadTemplateView('save_user', $_POST + ['exception' => $exception]);
