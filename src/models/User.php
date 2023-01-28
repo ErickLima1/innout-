@@ -25,7 +25,15 @@ class User extends model {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::insert();
     }
+    public function update() {
+        $this->validate();
+        $this->is_admin = $this->is_admin ? 1 : 0; //Se tiver setado inteiro 1 caso contrario vai ser 0
+        if(!$this->end_date)  $this->end_date = null;
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        return parent::update();
+    }
 
+    //Campo de validação do cadastro do usuario;
     private function validate() {
         $erros = [];
 
