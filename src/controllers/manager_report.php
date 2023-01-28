@@ -1,6 +1,6 @@
 <?php
 session_start();
-RequireValidSession();
+RequireValidSession(true);
 
 //Tudo isso vai para Interface Grafica do Monthy_Report viesw
 $activeUsersCount = User::getActiveUsersCount();
