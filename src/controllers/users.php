@@ -1,6 +1,22 @@
 <?php
 session_start();
-RequireValidSession();
+RequireValidSession(true);
+
+//Deletando o Usuario(apenas usuario que não tem registro de ponto);
+$exception = null;
+if(isset($_GET['delete'])) {
+    try {
+        User::deleteById($_GET['delete']);
+            addSucessMsg('Usuario Excluido com Sucesso');
+    }catch(Exception $e) {
+        if(stripos($e->getMessage(), 'FOREIGN KEY')) {
+            addErrorMsg('Não foi Possivel excluir o usuario com registro de ponto!!!');
+        }else{
+            $exception = $e;
+
+        }
+    }
+}
 
 $users = User::get();
 foreach($users as $user) {//Formatando data para formato Brasileiro.
@@ -10,4 +26,7 @@ foreach($users as $user) {//Formatando data para formato Brasileiro.
     }
 }
 
-loadTemplateView('users', ['users' => $users]);
+loadTemplateView('users', [
+    'users' => $users, 
+    'exception' => $exception
+]);
