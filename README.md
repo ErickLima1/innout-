@@ -24,12 +24,12 @@
 <!--ts-->
    * # [Execptions](https://github.com/ErickLima1/innout-/tree/main/src/execptions)
       * [AppExecption](#AppExecption)
-      * [ValidationExecption](#ValidationExecption.php)
+      * [ValidationExecption](#ValidationExecption)
 <!--te-->
 
 <!--ts-->
    * # [Models](https://github.com/ErickLima1/innout-/tree/main/src/models)
-      * [Login](#Login.php)
+      * [Login](#Login)
       * [Model](#Model)
       * [User](#User)
       * [loader](#loader)
