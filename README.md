@@ -3,7 +3,7 @@
 =================
 <!--ts-->
    * # [Config](https://github.com/ErickLima1/innout-/tree/main/src/config)
-      * [database](#database)
+      * [database](#https://github.com/ErickLima1/innout-/blob/main/src/config/config.php)
       * [date_utils](#date_utils)
       * [loader](#loader)
       * [session](#session)
